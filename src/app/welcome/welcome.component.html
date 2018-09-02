@@ -1,0 +1,32 @@
+
+
+<form #f="ngForm" (ngSubmit)="f.valid?log(f):null">
+  <input type="text" ngModel  name="userInfo" #paraInfo="ngModel" [minlength]="6" placeholder="userInfo" required>
+  <span *ngIf="paraInfo.errors?.required && paraInfo.touched">* required</span>
+  <span *ngIf="paraInfo.errors?.minlength && paraInfo.touched">* 6 chars required</span>
+  
+  <br>
+  <input type="password" ngModel  name="pass" #password="ngModel" required >
+  <span *ngIf="password.errors?.required && password.touched">* required</span>
+  <br>
+  <!-- Welcome, you are Logged In -->
+  <!-- <a routerLink="/">Logout</a> -->
+
+
+<button  type="submit" >Log Element</button>
+</form>
+
+<br>
+
+<form (ngSubmit)="rlog()" [formGroup]="userRegistrationForm">
+  <input type="text"   formControlName="userInfo">
+  <span *ngIf="userRegistrationForm.controls.userInfo.errors?.required">* required</span>
+  <span *ngIf="userRegistrationForm.controls.userInfo.errors?.email">* Email</span>
+
+  <input type="password" formControlName="pass">
+  <span *ngIf="userRegistrationForm.controls.pass.errors?.pattern">* Email</span>
+  <span *ngIf="userRegistrationForm.controls.pass.errors?.required">* required</span>
+
+  <button type="submit">submit</button>
+</form>
+
